@@ -10,7 +10,7 @@ function mountOneClient (config, app, client = "weapp") {
   assert(config.key, "[egg-passport-weapp] config.passportWeapp.key required");
   assert(config.secret, "[egg-passport-weapp] config.passportWeapp.secret required");
 
-  app.passport.use(client, new Strategy(Object.assign({}, config, { appID: config.key, appSecret: config.secret }), (req, accessToken, refreshToken, profile, expires_in, verified) => {
+  app.passport.use(client, new Strategy(Object.assign({}, config, { appID: config.key, appSecret: config.secret }), (req, accessToken, refreshToken, profile, expiresIn, verified) => {
     const user = {
       providerPlatform: "wechat",
       providerGroup: "weapp",
@@ -24,6 +24,7 @@ function mountOneClient (config, app, client = "weapp") {
         : profile.gender === "MALE"
           ? "male"
           : "unknown",
+      expiresIn,
       accessToken,
       refreshToken,
       sessionKey: profile.sessionKey,
