@@ -40,6 +40,11 @@ exports.default = (app) => {
   if (config.clients) {
     for (const client in config.clients) {
       const c = config.clients[client];
+
+      if (config.state) {
+        c.state = config.state
+      }
+
       mountOneClient(c, app, client);
     }
   } else {
