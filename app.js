@@ -45,6 +45,10 @@ exports.default = (app) => {
         c.state = config.state
       }
 
+      if (config.client) {
+        c.client = config.client
+      }
+
       mountOneClient(c, app, client);
     }
   } else {
