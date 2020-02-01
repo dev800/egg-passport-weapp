@@ -11,19 +11,17 @@ function mountOneClient (config, app, client = "weapp") {
   assert(config.secret, "[egg-passport-weapp] config.passportWeapp.secret required");
 
   app.passport.use(client, new Strategy(Object.assign({}, config, { appID: config.key, appSecret: config.secret }), (req, accessToken, refreshToken, profile, expiresIn, verified) => {
+    profile._raw = JSON.stringify(profile)
+
     const user = {
       providerPlatform: "wechat",
       providerGroup: "weapp",
       provider: client,
       id: profile.unionid || profile.openid,
-      name: profile.unionid || profile.openid,
-      displayName: profile.unionid || profile.openid,
-      photo: "",
-      gender: profile.gender === "FEMALE"
-        ? "female"
-        : profile.gender === "MALE"
-          ? "male"
-          : "unknown",
+      name: profile.nickName,
+      displayName: profile.nickName,
+      photo: profile.avatarUrl,
+      gender: profile.gender === 1 ? "male" : (profile.gender === 2 ? "female" : "unknown"),
       expiresIn,
       accessToken,
       refreshToken,
