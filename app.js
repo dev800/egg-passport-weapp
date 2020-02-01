@@ -15,7 +15,7 @@ function mountOneClient (config, app, client = "weapp") {
 
     const user = {
       providerPlatform: "wechat",
-      providerGroup: "weapp",
+      providerMedia: "weapp",
       provider: client,
       id: profile.unionid || profile.openid,
       name: profile.nickName,
