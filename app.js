@@ -7,6 +7,12 @@ const Strategy = require("./lib/passport-weapp/index").Strategy;
 function mountOneClient (config, app, client = "weapp") {
   config.passReqToCallback = true;
 
+  config.successResponse = config.successResponse || function(_req, res) {
+    res.statusCode = 200;
+    res.body = JSON.stringify({status: 'ok'})
+    res.end();
+  }
+
   assert(config.key, "[egg-passport-weapp] config.passportWeapp.key required");
   assert(config.secret, "[egg-passport-weapp] config.passportWeapp.secret required");
 
