@@ -18,6 +18,7 @@
     "debug": "^2.6.1",
     "egg-passport": "^2.0.1",
     "npminstall": "^3.23.0",
+    "passport": "git+https://github.com/dev800/passport.git",
     "passport-strategy": "^1.0.0",
     "urllib": "^2.30.0",
     "wechat-oauth": "^1.0.1"
