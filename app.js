@@ -6,6 +6,9 @@ const Strategy = require("./lib/passport-weapp/index").Strategy;
 
 function mountOneClient (config, app, client = "weapp") {
   config.passReqToCallback = true;
+  config.provider = client;
+  config.providerMedia = 'wechat';
+  config.providerPlatform = 'wechat';
 
   config.successResponse = config.successResponse || function(_req, res) {
     res.statusCode = 200;
@@ -20,8 +23,8 @@ function mountOneClient (config, app, client = "weapp") {
     profile._raw = JSON.stringify(profile)
 
     const user = {
-      providerPlatform: "wechat",
-      providerMedia: "weapp",
+      providerPlatform: config.providerPlatform,
+      providerMedia: config.providerMedia,
       provider: client,
       id: profile.unionid || profile.openid,
       name: profile.nickName,
@@ -45,6 +48,14 @@ exports.default = (app) => {
   if (config.clients) {
     for (const client in config.clients) {
       const c = config.clients[client];
+
+      if (config.saveToken) {
+        c.saveToken = config.saveToken
+      }
+
+      if (config.getToken) {
+        c.getToken = config.getToken
+      }
 
       if (config.state) {
         c.state = config.state
