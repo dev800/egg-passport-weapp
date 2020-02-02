@@ -21,7 +21,7 @@
     "passport": "git+https://github.com/dev800/passport.git#feature/v0.3.2",
     "passport-strategy": "^1.0.0",
     "urllib": "^2.30.0",
-    "wechat-oauth": "^1.0.1"
+    "wechat-oauth": "git+https://github.com/dev800/wechat-oauth.git"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
