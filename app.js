@@ -12,7 +12,7 @@ function mountOneClient (config, app, client = "weapp") {
 
   config.successResponse = config.successResponse || function(_req, res) {
     res.statusCode = 200;
-    res.body = JSON.stringify({status: 'ok'})
+    res.body = {status: 'ok'}
     res.end();
   }
 
