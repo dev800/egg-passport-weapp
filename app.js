@@ -7,8 +7,8 @@ const Strategy = require("./lib/passport-weapp/index").Strategy;
 function mountOneClient (config, app, client = "weapp") {
   config.passReqToCallback = true;
   config.provider = client;
-  config.providerMedia = 'wechat';
-  config.providerPlatform = 'wechat';
+  config.providerPlatform = config.providerPlatform || 'wechat';
+  config.providerMedia = config.providerMedia || 'wechat-mp';
 
   config.successResponse = config.successResponse || function(_req, res) {
     res.statusCode = 200;
