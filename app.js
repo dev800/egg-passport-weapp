@@ -26,7 +26,7 @@ function mountOneClient (config, app, client = "weapp") {
       providerPlatform: config.providerPlatform,
       providerMedia: config.providerMedia,
       provider: client,
-      id: profile.unionid || profile.openid,
+      id: profile.openid,
       name: profile.nickName,
       displayName: profile.nickName,
       photo: profile.avatarUrl,
@@ -42,6 +42,7 @@ function mountOneClient (config, app, client = "weapp") {
     app.passport.doVerify(req, user, verified);
   }));
 }
+
 exports.default = (app) => {
   const config = app.config.passportWeapp;
 
